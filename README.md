@@ -1,5 +1,10 @@
 <p align="center"><img src="docs/media/logo.svg" width="88" alt="I-SKAN logo"></p>
 <h1 align="center">I-SKAN</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/Mobile%20app-A44832?style=flat" alt="Mobile app">
+  <img src="https://img.shields.io/badge/Offline-30343A?style=flat" alt="Offline">
+  <img src="https://img.shields.io/badge/Ad--free-30343A?style=flat" alt="Ad-free">
+</p>
 <p align="center">A free, offline document scanner for Android</p>
 
 I-SKAN helps you turn paper documents into digital copies for submission using your phone. Scan an ID, signed form, or receipt without a printer or a website upload.
