@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#164d41"><title>I-SKAN · Local document scanner</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header><a class="brand" href="/" aria-label="I-SKAN home"><span class="brand-mark">I</span>I-SKAN</a><span class="tag">Your paper. Your laptop.</span><a class="help-link" href="/static/setup.html" target="_blank" rel="noopener">Help</a><span id="connection" role="status">Connecting…</span></header>
+<div id="notice" role="alert" hidden></div>
+<section id="pair" class="pair panel" hidden><p class="eyebrow">PRIVATE CONNECTION</p><h1>Connect to your laptop</h1><p>Enter the pairing code shown in I-SKAN on your laptop. Keep both devices on the same private Wi-Fi.</p><form id="pair-form"><label>Pairing code<input id="pair-code" autocomplete="off" maxlength="8" required placeholder="8-character code"></label><button class="primary">Connect</button></form><p class="hint">If the laptop cannot be reached, check that it is awake, that Windows allows the app on your private network, and that Wi-Fi client isolation is off.</p></section>
+<main id="app" hidden>
+<aside>
+<button id="new-scan" class="primary full">New scan</button>
+<div class="aside-label">WORKING SCANS <span id="draft-count"></span></div><nav id="drafts" aria-label="Scan sessions"></nav>
+<button id="history-button" class="text-button">Saved scan log</button>
+<div id="pairing" class="pairing" hidden><p class="eyebrow">CAPTURE FROM YOUR PHONE</p><img id="qr" alt="Open I-SKAN on your phone" hidden><p id="lan-url"></p><p>Pairing code <strong id="pairing-code"></strong></p><p class="hint">HTTPS must be trusted on Android before live camera access works. Photo upload is also available.</p><a href="/static/setup.html" target="_blank" rel="noopener">Connection help ↗</a></div>
+<div class="totals"><strong id="total-scans">0</strong> saved scans · <span id="total-pages">0</span> pages<p>Processed and stored locally</p></div>
+</aside>
+<div class="workspace">
+<section id="prepare">
+<p class="eyebrow">01 / PREPARE</p><h1>Give your paper<br>a place to stay.</h1><p class="intro">Capture on your phone, finish on your laptop.<br>Start with the document you’re scanning.</p>
+<form id="prepare-form" class="panel setup-form">
+<fieldset><legend>Document</legend><div class="segmented"><label><input type="radio" name="mode" value="single" checked><span>Single page</span></label><label><input type="radio" name="mode" value="multiple"><span>Multiple pages</span></label></div><label id="expected-wrap" hidden>Expected pages<input name="expected" type="number" min="1" max="100" value="1"></label></fieldset>
+<fieldset><legend>Paper & appearance</legend><div class="fields"><label>Paper size<select name="paper"><option>A4</option><option>A5</option><option>Letter</option><option>Legal</option><option>A3</option><option>B5</option><option>Custom</option></select></label><label>Orientation<select name="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label></div><div id="custom-paper" class="fields" hidden><label>Width<input name="width" type="number" min="0.1" step="0.1" value="210"></label><label>Height<input name="height" type="number" min="0.1" step="0.1" value="297"></label><label>Units<select name="units"><option value="mm">Millimeters</option><option value="in">Inches</option></select></label></div><label>Appearance<select name="appearance"><option value="color">Color · preserve stamps & signatures</option><option value="grayscale">Grayscale</option><option value="bw">Black & white · inspect faint details</option></select></label></fieldset>
+<button class="primary large" type="submit">Start scan →</button><p class="hint">Settings are remembered. Original captures stay available until you save.</p>
+</form>
+</section>
+<section id="session" hidden>
+<div class="session-heading"><div><p class="eyebrow" id="step-label">02 / CAPTURE & REVIEW</p><h1 id="session-title">Your document</h1><p id="session-status"></p></div><button id="settings-button">Scan settings</button></div>
+<div id="print-request" class="banner" hidden><span>Ready to print on laptop. Use the approved PDF to choose your printer and options.</span><button id="open-print-request">Open print preview</button></div>
+<div id="capture-area" class="panel">
+<div class="toolbar"><div><strong id="capture-progress">0 pages captured</strong><p class="hint">Review originals before processing.</p></div><div class="actions"><label id="expected-inline">Expected<input id="expected-input" type="number" min="1" max="100"></label><button id="update-expected">Update count</button><button id="camera-open">Open camera</button><label class="button" for="upload">Upload photos</label><input type="file" id="upload" accept="image/*,.heic,.heif" capture="environment" multiple hidden></div></div>
+<div id="camera" hidden>
+<div class="viewfinder"><video id="video" autoplay playsinline muted></video><div id="paper-guide" aria-hidden="true"></div><svg id="detected" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><polygon id="detected-polygon"></polygon></svg><span id="feedback">Checking frame…</span></div>
+<div class="camera-controls"><label>Camera<select id="camera-select"></select></label><button id="capture" class="primary">Capture page</button><button id="camera-close">Close camera</button></div><p id="camera-note" class="hint">Keep every corner visible. “Ready” is an alignment aid; inspect text after capture.</p></div>
+<div id="empty-pages" class="empty"><span class="paper-symbol" aria-hidden="true"></span><h2>Your pages will appear here</h2><p>Open the camera or upload a photo of your paper.</p></div>
+<div id="pages" class="pages"></div>
+<div id="process-bar" class="process-bar"><p id="count-note"></p><button id="process" class="primary">Process all pages</button></div>
+</div>
+<section id="verify" class="panel" hidden>
+<div class="section-title"><div><p class="eyebrow">03 / VERIFY & FINISH</p><h2>Make it yours.</h2></div><span id="approval-state">Review before saving</span></div>
+<div class="verification-layout"><div><div class="preview-controls"><label>Page<select id="preview-page"></select></label><label><input type="checkbox" id="compare-original"> Show original</label></div><div class="document-preview"><img id="final-preview" alt="Final page appearance including selected layout"></div><p class="hint">The finished preview uses the actual export layout.</p></div>
+<form id="approval-form"><label>Document title<input id="title" required maxlength="200"></label><p id="title-note" class="hint"></p><label>Document date <span class="optional">optional</span><input id="document-date" type="date"></label><p id="date-note" class="hint"></p><div id="date-candidates" class="actions"></div><label>Filename <span class="optional">without extension</span><input id="filename" required maxlength="150"></label><label>Laptop destination<select id="destination"></select></label><div id="folder-controls" class="actions" hidden><button id="browse-folder" type="button">Browse laptop…</button><button id="type-folder" type="button">Enter folder path</button></div><p id="scanned-date" class="hint"></p><button id="approve" class="full" type="submit">Approve this document</button><div class="finish-actions"><button id="save" type="button" class="primary">Save</button><button id="print" type="button">Print</button><button id="save-print" type="button">Save and print</button></div><p id="save-result" class="hint" role="status"></p></form></div>
+</section>
+<button id="discard" class="text-button danger">Discard working scan</button>
+</section>
+<section id="history" hidden><p class="eyebrow">SAVED SCAN LOG</p><h1>A small record.</h1><p>Only the approved title, page count, and scan date are recorded.</p><div class="panel"><table><thead><tr><th>Title</th><th>Pages</th><th>Scanned date</th></tr></thead><tbody id="log-rows"></tbody></table></div></section>
+</div></main>
+<dialog id="crop-dialog"><form id="crop-form"><div class="section-title"><h2>Correct page</h2><button type="button" id="crop-cancel">Close</button></div><p>Drag the four corners to the paper boundary. Rotation applies after cropping.</p><div id="crop-canvas"><img id="crop-image" alt="Original capture"><svg id="crop-overlay" viewBox="0 0 1000 1000" preserveAspectRatio="none"><polygon id="crop-polygon"></polygon><circle data-corner="0" r="18"></circle><circle data-corner="1" r="18"></circle><circle data-corner="2" r="18"></circle><circle data-corner="3" r="18"></circle></svg></div><div class="actions"><label>Rotate<select id="rotation"><option value="0">0°</option><option value="90">90° clockwise</option><option value="180">180°</option><option value="270">270° clockwise</option></select></label><button type="button" id="full-crop">Use whole photo</button><button class="primary">Apply correction</button></div></form></dialog>
+<dialog id="settings-dialog"><div class="section-title"><h2>Scan settings</h2><button id="settings-close">Close</button></div><form id="settings-form"></form></dialog>
+<dialog id="folder-dialog"><form id="folder-form"><h2>Laptop output folder</h2><label>Existing absolute folder path<input id="folder-path" required placeholder="C:\Users\…\Documents"></label><p class="hint">I-SKAN checks the folder exists and is writable before using it.</p><div class="actions"><button class="primary">Use folder</button><button type="button" id="folder-cancel">Cancel</button></div></form></dialog>
+<dialog id="page-preview-dialog"><div class="section-title"><h2>Processed page</h2><button id="page-preview-close">Close</button></div><img id="page-preview-image" alt="Cleaned page" style="display:block;max-width:100%;max-height:75dvh;margin:auto"><p class="hint">Cleaned page pixels. Final margins, watermark, and numbering appear in the export preview after all pages finish.</p></dialog>
+<script src="/static/app.js"></script>
+</body></html>

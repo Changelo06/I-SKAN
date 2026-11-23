@@ -1,0 +1,26 @@
+[
+  {
+    "library": "libc++_shared.so",
+    "minimum_load_alignment": 16384
+  },
+  {
+    "library": "libimage_processing_util_jni.so",
+    "minimum_load_alignment": 16384
+  },
+  {
+    "library": "libonnxruntime.so",
+    "minimum_load_alignment": 16384
+  },
+  {
+    "library": "libonnxruntime4j_jni.so",
+    "minimum_load_alignment": 16384
+  },
+  {
+    "library": "libopencv_java4.so",
+    "minimum_load_alignment": 16384
+  },
+  {
+    "library": "libsurface_util_jni.so",
+    "minimum_load_alignment": 16384
+  }
+]

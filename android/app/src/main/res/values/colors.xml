@@ -1,0 +1,1 @@
+<resources><color name="app_background">#FAF7F2</color><color name="app_surface">#FFFFFF</color><color name="app_text">#30343A</color><color name="app_muted">#64686E</color><color name="app_primary">#A44832</color><bool name="light_system_bars">true</bool></resources>
