@@ -1,9 +1,16 @@
+<p align="center"><img src="docs/media/logo.svg" width="88" alt="I-SKAN logo"></p>
 <h1 align="center">I-SKAN</h1>
 <p align="center">A free, offline document scanner for Android</p>
 
 I-SKAN helps you turn paper documents into digital copies for submission using your phone. Scan an ID, signed form, or receipt without a printer or a website upload.
 
 [Android setup and build guide](android/README.md) · [Desktop scanner guide](DESKTOP.md) · [MIT license](LICENSE)
+
+<p align="center">
+  <a href="docs/media/01-pocket-scanner.png"><img src="docs/media/01-pocket-scanner.png" width="245" alt="I-SKAN home and scanning options"></a>
+  <a href="docs/media/02-smart-capture.png"><img src="docs/media/02-smart-capture.png" width="245" alt="Smart Crop and document review"></a>
+  <a href="docs/media/05-private-export.png"><img src="docs/media/05-private-export.png" width="245" alt="Private export and sharing"></a>
+</p>
 
 ## What you can do
 
